@@ -1,0 +1,49 @@
+<div class="flex flex-col h-screen">
+
+  <header class="basis-5/6">
+  <div class="flex flex-row w-screen h-full">
+    <div class="basis-1/2 h-full grid content-center">
+      <p class="text-[50px] font-bold text-[#e91e63] p-6 place-self-center">
+        COMPANY NAME
+      </p>
+      <h2 class="place-self-center">
+        COMPANY NAME helps you invest in movies/series.
+      </h2>
+
+    </div>
+    <div class="basis-1/2 h-full grid content-center">
+      <mat-card class="w-2/5 place-self-center">
+        <mat-card-content>
+          <form #form="ngForm" class="flex flex-col" (ngSubmit)="login(form)">
+            <mat-form-field class="p-3">
+              <input type="email" matInput name="email" ngModel placeholder="Email" required/>
+            </mat-form-field>
+            <mat-form-field class="p-3">
+              <input type="password" matInput name="password" ngModel placeholder="Password" required>
+            </mat-form-field>
+            <button type="submit" mat-button color="primary" class="login-button" [disabled]="form.invalid||form.pending">LOG IN</button>
+
+          </form>
+          <div class="grid flex flex-col space-y-4">
+          <a href="#" class="place-self-center border-b-[1px] border-slate-800 pb-5 pt-5 w-full text-center">Forgotten account?</a>
+
+
+          <button mat-button color="warn" class="place-self-center w-full h-15" (click)="openRegister()">Create New Account</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <p class="place-self-center pt-6">Investing is the best investment</p>
+
+    </div>
+  </div>
+
+  </header>
+
+  <footer class="basis-1/6 place-self-center">
+    <p>
+      FOOTER
+    </p>
+  </footer>
+
+</div>

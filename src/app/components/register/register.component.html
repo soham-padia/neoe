@@ -1,0 +1,49 @@
+<section class="register">
+  <div class="header">
+    <h3>Sign Up</h3>
+    <p>Its quick and easy</p>
+  </div>
+
+  <div>
+    <form #form="ngForm" class="flex flex-col" >
+      <div>
+      <mat-form-field class="p-3">
+        <input type="text" matInput name="first_name" ngModel placeholder="First Name" required/>
+      </mat-form-field>
+
+      <mat-form-field class="p-3">
+        <input type="text" matInput name="last_name" ngModel placeholder="Last Name" required/>
+      </mat-form-field>
+      </div>
+
+      <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Date of birth</mat-label>
+        <!-- #docregion toggle -->
+        <input matInput [matDatepicker]="picker" ngModel required>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <!-- #enddocregion toggle -->
+      </mat-form-field>
+      </div>
+
+      <div>
+      <mat-form-field class="p-3">
+        <input type="email" matInput name="email" ngModel placeholder="Email" required/>
+      </mat-form-field>
+      </div>
+
+      <div>
+      <mat-form-field class="p-3">
+        <input type="password" matInput name="password" ngModel placeholder="Password" required>
+      </mat-form-field>
+
+      <mat-form-field class="p-3">
+        <input type="password" matInput name="password-check" ngModel placeholder="Password Checking" required>
+      </mat-form-field></div>
+
+      <div><button type="submit" mat-button color="primary" class="login-button" [disabled]="form.invalid||form.pending">LOG IN</button></div>
+    </form>
+  </div>
+</section>

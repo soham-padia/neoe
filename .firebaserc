@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "neoe-66ca7": {
+      "hosting": {
+        "neoe": [
+          "neoe-66ca7"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "neoe-66ca7"
+  }
+}
