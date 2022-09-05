@@ -1,27 +1,17 @@
-<div class="h-screen">
-  <div class="">
-    <mat-toolbar color="accent">
-      <div class="grid">
-      <div class="justify-self-stretch justify-self-start">
-        <span class="rounded-full bg-amber-100 p-2">COMPANY LOGO</span>
-      </div>
-      <div class="p-3 justify-self-stretch justify-self-center">
-        <form>
-          <mat-form-field>
-            <input type="text" name="search" matInput placeholder="Search" ><mat-icon>search</mat-icon>
-          </mat-form-field>
-        </form>
-      </div>
-      </div>
-    </mat-toolbar>
-  </div>
+<div class="h-screen w-screen">
+  <app-top-tool-bar></app-top-tool-bar>
 
-  <div class="under-nav">
-    <div class="sidebar">
+  <div class="h-full w-screen text-purple-900">
+      <mat-sidenav-container class="example-container h-full bg-[#4cbfa600] text-purple-900">
 
-    </div>
-    <div class="mat-body">
+        <mat-sidenav mode="side" class="h-full w-1/6 pr-5 bg-[#4cbfa600] text-purple-900" opened>
+          <app-nav-bar></app-nav-bar>
+        </mat-sidenav>
 
-    </div>
+        <mat-sidenav-content class="h-full text-purple-900">
+          <app-main-body-component></app-main-body-component>
+        </mat-sidenav-content>
+
+      </mat-sidenav-container>
   </div>
 </div>

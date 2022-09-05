@@ -1,0 +1,8 @@
+<div class="h-full w-full">
+  <!-- needs a loop -->
+  <div class="md:container md:mx-auto">
+    <div *ngFor="let section of sections">
+      <app-section-card [title]="section.title" [cards]="section.cards"></app-section-card>
+    </div>
+  </div>
+</div>

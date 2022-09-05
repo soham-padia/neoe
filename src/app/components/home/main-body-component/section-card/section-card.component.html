@@ -1,0 +1,12 @@
+<section class="section-card">
+  <div class="text-2xl py-5 font-extrabold overflow-x-auto">
+    {{title}}
+  </div>
+  <div class="">
+    <div class="flex flex-row overflow-x-auto">
+
+      <div *ngFor="let card of cards"><app-card [card_header]="card.card_header" [card_title]="card.card_title"></app-card></div>
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,60 @@
+
+<!-- Side navigation bar -->
+
+<div class="pt-5 w-full">
+    <button mat-button [matMenuTriggerFor]="menu" class="w-full" aria-label="Example icon-button with a menu">
+        <mat-icon>person</mat-icon>
+        <span>USERNAME</span>
+    </button>
+    <mat-menu #menu="matMenu" xPosition="before" yPosition="below">
+        <button mat-menu-item>
+            <mat-icon>dialpad</mat-icon>
+            <span>Redial</span>
+        </button>
+        <button mat-menu-item disabled>
+            <mat-icon>voicemail</mat-icon>
+            <span>Check voice mail</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Disable alerts</span>
+        </button>
+    </mat-menu>
+
+</div>
+
+<div class="pt-5 w-full">
+    <a href="#" class="m-2 w-full">
+        <button mat-button class="w-full">
+            <mat-icon fontIcon="home"></mat-icon>
+            Home page
+        </button>
+    </a>
+</div>
+
+<div class="pt-5 w-full">
+    <a href="#" class="m-2 w-full">
+        <button mat-button class="w-full">
+            <mat-icon fontIcon="monetization_on"></mat-icon>
+            Your Investments
+        </button>
+    </a>
+</div>
+
+<div class="pt-5 w-full">
+    <a href="#" class="m-2 w-full">
+        <button mat-button class="w-full">
+            <mat-icon fontIcon="arrow_upwards"></mat-icon>
+            Liked Posts
+        </button>
+    </a>
+</div>
+
+<div class="pt-5 w-full">
+    <a href="#" class="m-2 w-full">
+        <button mat-button class="w-full">
+            <mat-icon fontIcon="add_box"></mat-icon>
+            Saved Posts
+        </button>
+    </a>
+</div>
