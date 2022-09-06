@@ -1,0 +1,47 @@
+<div class="grid grid-cols-5 w-screen h-screen">
+  <div class=""></div>
+  <section class="col-span-3 grid grid-rows-4 gap-4 h-screen">
+    <div></div>
+    <div class="row-start-2 row-end-4 p-4 rounded-lg border-2">
+      <div class="header">
+        <h3>Create Post</h3>
+        <p>Its quick and easy</p>
+      </div>
+
+      <div>
+        <form #form="ngForm" class="flex flex-col" >
+          <div>
+            <mat-form-field class="p-3 w-1/3">
+              <input type="text" matInput name="posttitle" ngModel placeholder="Post Title" required/>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field class="p-3 w-3/5">
+              <input type="text" matInput name="postbrief" ngModel placeholder="Brief summary of post" required/>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field class="p-3 w-11/12">
+              <input type="text" matInput name="postsummary" ngModel placeholder="Summary of post" required/>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field class="p-3 w-11/12">
+              <mat-label>Details of post in full details</mat-label>
+              <textarea matInput cdkTextareaAutosize="true"
+                        #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="5"
+                        cdkAutosizeMaxRows="10"></textarea>
+            </mat-form-field>
+
+          </div>
+
+          <div><button type="submit" mat-button color="primary" class="login-button" [disabled]="form.invalid||form.pending">LOG IN</button></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>

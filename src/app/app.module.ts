@@ -21,12 +21,18 @@ import {MateialModule} from './shared/mateial.module'
 
 import {MatCommonModule} from "@angular/material/core";
 import {MatMenuModule} from "@angular/material/menu";
+import {HomeComponent} from "./components/home/home.component";
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFirestore, AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/compat/auth";
+import { PostFormComponent } from './components/post-form/post-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,9 @@ import {MatMenuModule} from "@angular/material/menu";
     provideStorage(() => getStorage()),
     MatCommonModule,
     MatMenuModule,
-
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule
 
   ],
   providers: [
