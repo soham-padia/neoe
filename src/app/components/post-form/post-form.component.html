@@ -2,14 +2,14 @@
   <div class=""></div>
   <section class="col-span-3 grid grid-rows-4 gap-4 h-screen">
     <div></div>
-    <div class="row-start-2 row-end-4 p-4 rounded-lg border-2">
+    <div class="row-start-2 row-end-5 p-4 rounded-lg border-2">
       <div class="header">
         <h3>Create Post</h3>
         <p>Its quick and easy</p>
       </div>
 
       <div>
-        <form #form="ngForm" class="flex flex-col" >
+        <form #form="ngForm" class="flex flex-col" (ngSubmit)="postData(form)">
           <div>
             <mat-form-field class="p-3 w-1/3">
               <input type="text" matInput name="posttitle" ngModel placeholder="Post Title" required/>
@@ -34,7 +34,7 @@
               <textarea matInput cdkTextareaAutosize="true"
                         #autosize="cdkTextareaAutosize"
                         cdkAutosizeMinRows="5"
-                        cdkAutosizeMaxRows="10"></textarea>
+                        cdkAutosizeMaxRows="10" name="postdetails" ngModel></textarea>
             </mat-form-field>
 
           </div>

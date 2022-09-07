@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore} from "@angular/fire/compat/firestore";
+/*import {AngularFirestore} from "@angular/fire/compat/firestore";*/
+import {AngularFirestore} from "@angular/fire/compat/firestore"
 import {AngularFireAuth} from "@angular/fire/compat/auth";
-import firebase from "firebase/compat";
+import firebase from "firebase/compat/app";
 import User = firebase.User;
 import {map, Observable} from "rxjs";
 import {actions} from "@storybook/addon-actions";
@@ -31,5 +32,18 @@ export class PostService {
           });
         }),
       );
+  }
+
+  postData(title:string,ownerName:string,brief:string,summary:string,details:string,otherItems: any[]):void{
+    this.afs.collection('posts').add({
+      title,
+      ownerName,
+      brief,
+      summary,
+      details,
+      user_id: this.currentUser?.uid,
+      time:firebase.firestore.FieldValue.serverTimestamp(),
+      ...otherItems,
+    }).then((res: any)=>console.log(res)).catch((err: any) =>console.log(err));
   }
 }
