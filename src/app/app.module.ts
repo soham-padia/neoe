@@ -26,6 +26,7 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFirestore, AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { PostFormComponent } from './components/post-form/post-form.component';
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PostFormComponent } from './components/post-form/post-form.component';
     MatMenuModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MatDialogModule
 
   ],
   providers: [

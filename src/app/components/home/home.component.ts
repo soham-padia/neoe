@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService, UserData} from "../../services/auth.service";
 import {Subscription} from "rxjs";
 import {PostService} from "../../services/post.service";
+import {user} from "@angular/fire/auth";
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,8 @@ export class HomeComponent implements OnInit {
   constructor(private postService:PostService,
               private authService:AuthService) {
 
+    console.log(this.user)
+
   }
 
   ngOnInit(): void {
@@ -31,7 +34,10 @@ export class HomeComponent implements OnInit {
     )
 
     this.subs.push(
-
+      this.authService.CurrentUser().subscribe(user=>{
+        this.user=user;
+        console.log(user)
+      })
     )
   }
 
