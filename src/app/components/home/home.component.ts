@@ -3,6 +3,9 @@ import {AuthService, UserData} from "../../services/auth.service";
 import {Subscription} from "rxjs";
 import {PostService} from "../../services/post.service";
 import {user} from "@angular/fire/auth";
+import {Router} from "@angular/router";
+import { getAuth } from "firebase/auth";
+
 
 @Component({
   selector: 'app-home',
@@ -15,14 +18,22 @@ export class HomeComponent implements OnInit {
   user: UserData | undefined;
   subs:Subscription[]=[];
 
+
+  getauth=getAuth();
+
+
+
+
   ngOnDestroy(): void {
     this.subs.map(s=>s.unsubscribe())
   }
 
   constructor(private postService:PostService,
-              private authService:AuthService) {
+              private authService:AuthService,
+              private router:Router) {
 
     console.log(this.user)
+
 
   }
 
@@ -36,7 +47,7 @@ export class HomeComponent implements OnInit {
     this.subs.push(
       this.authService.CurrentUser().subscribe(user=>{
         this.user=user;
-        console.log(user)
+        console.log(user);
       })
     )
   }

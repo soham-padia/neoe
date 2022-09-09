@@ -5,6 +5,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import firebase from "firebase/compat/app";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {Router} from "@angular/router";
+import User = firebase.User;
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AuthService {
   constructor(private afs:AngularFirestore,
               private afAuth:AngularFireAuth,
               private router:Router) {
+
 
     // @ts-ignore
     this.userData=afAuth.authState;
@@ -50,7 +52,20 @@ export class AuthService {
     return this.currentUser$.asObservable()
   }
 
-  SignUp(email:string,
+  SendVerificationMail() {
+    return this.afAuth.currentUser
+      .then((user) => {
+        // @ts-ignore
+        return user.sendEmailVerification();
+      })
+      .then(() => {
+        this.router.navigate(['/login']);
+        this.Logout()
+      });
+  }
+
+  SignUp(user:User,
+         email:string,
          password:string,
          firstName:string,
          lastName:string,
@@ -61,8 +76,10 @@ export class AuthService {
          canPostProducer=false,){
     this.afAuth.createUserWithEmailAndPassword(email,password)
       .then(res=>{
+        this.SendVerificationMail()
         if(res){
           this.afs.collection('users').doc(res.user?.uid).set({
+            user,
             firstName,
             lastName,
             email,
@@ -110,10 +127,11 @@ export class AuthService {
 
   Logout():void{
     this.afAuth.signOut().then(res=>{
+      console.log(res);
       this.currentUser=null;
       // @ts-ignore
       this.currentUser$.next(this.currentUser);
-      this.router.navigateByUrl('/login').then()
+      this.router.navigateByUrl('/login')
     });
   }
 
@@ -124,6 +142,7 @@ export class AuthService {
 }
 
 export interface UserData {
+  user:User,
   firstName:string,
   lastName:string,
   email:string,

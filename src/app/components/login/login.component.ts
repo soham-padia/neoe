@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.subs.push(
       this.authService.UserData.subscribe(user=>{
-        if (user!==undefined){
+        if (user!==undefined||user!==null){
           this.router.navigateByUrl('/').then();
         }
       })
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
       const {first_name,last_name,dob,email,password,password_check}=result;
       if (result!==undefined){
         if (password==password_check){
-          this.authService.SignUp(email,password,first_name,last_name,dob);
+          this.authService.SignUp(email,email,password,first_name,last_name,dob);
         }else return
       }else return;
       console.log(result)
