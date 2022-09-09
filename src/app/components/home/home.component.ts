@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService, UserData} from "../../services/auth.service";
+import {AuthService} from "../../services/auth.service";
 import {Subscription} from "rxjs";
 import {PostService} from "../../services/post.service";
 import {user} from "@angular/fire/auth";
 import {Router} from "@angular/router";
 import { getAuth } from "firebase/auth";
+import firebase from "firebase/compat";
+import User = firebase.User;
 
 
 @Component({
@@ -15,7 +17,7 @@ import { getAuth } from "firebase/auth";
 export class HomeComponent implements OnInit {
 
   posts:any[]=[];
-  user: UserData | undefined;
+  user: User | undefined;
   subs:Subscription[]=[];
 
 
@@ -33,6 +35,7 @@ export class HomeComponent implements OnInit {
               private router:Router) {
 
     console.log(this.user)
+    console.log(this.user?.emailVerified)
 
 
   }

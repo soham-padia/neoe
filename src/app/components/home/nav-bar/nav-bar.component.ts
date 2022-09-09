@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AuthService, UserData} from "../../../services/auth.service";
+import {AuthService} from "../../../services/auth.service";
+import firebase from "firebase/compat";
+import User = firebase.User;
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,7 +10,7 @@ import {AuthService, UserData} from "../../../services/auth.service";
 })
 export class NavBarComponent implements OnInit {
 
-  @Input() user:UserData | undefined;
+  @Input() user:User | undefined;
 
 
   constructor(private authService: AuthService) {

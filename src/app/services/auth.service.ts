@@ -13,7 +13,7 @@ import User = firebase.User;
 export class AuthService {
 
   private userData:Observable<firebase.User>;
-  private currentUser: UserData | undefined |null;
+  private currentUser: User | undefined |null;
   // @ts-ignore
   private currentUser$=new BehaviorSubject<UserData>(null)
 
@@ -26,8 +26,8 @@ export class AuthService {
     this.userData=afAuth.authState;
     this.userData.subscribe(user=>{
       if (user){
-        this.afs.collection<UserData>('users')
-          .doc<UserData>(user.uid)
+        this.afs.collection<User>('users')
+          .doc<User>(user.uid)
           .valueChanges()
           .subscribe(currentUser=>{
 
@@ -48,7 +48,7 @@ export class AuthService {
   }
 
 
-  CurrentUser(): Observable<UserData>{
+  CurrentUser(): Observable<User>{
     return this.currentUser$.asObservable()
   }
 
@@ -64,11 +64,9 @@ export class AuthService {
       });
   }
 
-  SignUp(user:User,
-         email:string,
+  SignUp(email:string,
          password:string,
-         firstName:string,
-         lastName:string,
+         fullName:string,
          dob:string,
          isVerified=false,
          canPostHome=false,
@@ -78,10 +76,9 @@ export class AuthService {
       .then(res=>{
         this.SendVerificationMail()
         if(res){
+          console.log("sdkjbj"+this.currentUser?.emailVerified)
           this.afs.collection('users').doc(res.user?.uid).set({
-            user,
-            firstName,
-            lastName,
+            fullName,
             email,
             dob,
             isVerified,
@@ -89,13 +86,18 @@ export class AuthService {
             canPostInvestor,
             canPostProducer,
           }).then(()=>{
-            this.afs.collection<UserData>('users')
-              .doc<UserData>(res.user?.uid)
+            this.afs.collection<User>('users')
+              .doc<User>(res.user?.uid)
               .valueChanges()
               .subscribe(user=>{
                 if (user){
-                  this.currentUser=user;
+                  // @ts-ignore
+                  this.currentUser.email=email;
+                  // @ts-ignore
+                  this.currentUser.displayName=fullName;
+
                   this.currentUser$.next(this.currentUser);
+                  console.log(user.emailVerified)
                 }
               });
           });
@@ -113,8 +115,8 @@ export class AuthService {
         // @ts-ignore
         this.userData=this.afAuth.authState;
 
-        this.afs.collection<UserData>('users')
-          .doc<UserData>(res.user?.uid)
+        this.afs.collection<User>('users')
+          .doc<User>(res.user?.uid)
           .valueChanges()
           .subscribe(user=>{
             if (user){
@@ -135,20 +137,9 @@ export class AuthService {
     });
   }
 
-  searchUserInDatabase(user_id:string):Observable<UserData>{
+  searchUserInDatabase(user_id:string):Observable<User>{
     // @ts-ignore
     return this.afs.collection<UserData>('users').doc<UserData>(user_id).valueChanges();
   }
 }
 
-export interface UserData {
-  user:User,
-  firstName:string,
-  lastName:string,
-  email:string,
-  id?:string,
-  isVerified:boolean,
-  canPostHome:boolean,
-  canPostInvestor:boolean,
-  canPostProducer:boolean,
-}

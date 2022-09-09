@@ -7,8 +7,7 @@ import {MatDialogRef} from "@angular/material/dialog";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  firstName: string | undefined;
-  lastName: any;
+  fullName: string | undefined;
   dob: any;
   email: any;
   pass1: any;

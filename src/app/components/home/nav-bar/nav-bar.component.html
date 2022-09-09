@@ -4,7 +4,7 @@
 <div class="pt-5 w-full">
     <button mat-button [matMenuTriggerFor]="menu" class="w-full" aria-label="Example icon-button with a menu">
         <mat-icon>person</mat-icon>
-        <span>{{user?.firstName||'Unknown'}}</span>
+        <span>{{user?.displayName||'Unknown'}}</span>
     </button>
     <mat-menu #menu="matMenu" xPosition="before" yPosition="below">
         <button mat-menu-item (click)="logout()">

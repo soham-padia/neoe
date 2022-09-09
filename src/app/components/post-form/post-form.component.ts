@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {PostService} from "../../services/post.service";
-import {AuthService, UserData} from "../../services/auth.service";
+import {AuthService} from "../../services/auth.service";
 import {Subscription} from "rxjs";
+import firebase from "firebase/compat";
+import User = firebase.User;
 
 @Component({
   selector: 'app-post-form',
@@ -11,7 +13,7 @@ import {Subscription} from "rxjs";
 })
 export class PostFormComponent implements OnInit {
 
-  user: UserData | undefined;
+  user: User | undefined;
   subs:Subscription[]=[];
 
   ngOnDestroy(): void {
@@ -37,10 +39,10 @@ export class PostFormComponent implements OnInit {
 
     // @ts-ignore
     this.postService.postData(data,
-      `${this.user?.firstName} ${this.user?.lastName}`,
+      `${this.user?.displayName}`,
       {
-        firstName:this.user?.firstName,
-        lastName:this.user?.lastName,
+        fullName:this.user?.displayName,
+        email:this.user?.email
 
       });
     form.resetForm()

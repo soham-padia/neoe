@@ -52,10 +52,10 @@ export class LoginComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result=>{
-      const {first_name,last_name,dob,email,password,password_check}=result;
+      const {full_name,dob,email,password,password_check}=result;
       if (result!==undefined){
         if (password==password_check){
-          this.authService.SignUp(email,email,password,first_name,last_name,dob);
+          this.authService.SignUp(email,password,full_name,dob);
         }else return
       }else return;
       console.log(result)
