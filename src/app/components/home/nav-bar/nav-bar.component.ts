@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AuthService} from "../../../services/auth.service";
-import firebase from "firebase/compat";
-import User = firebase.User;
+import {SupabaseService} from "../../../supabase.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,19 +9,19 @@ import User = firebase.User;
 })
 export class NavBarComponent implements OnInit {
 
-  @Input() user:User | undefined;
+  session=this.supabase.session
 
 
-  constructor(private authService: AuthService) {
-    console.log(this.user)
+  constructor(private readonly supabase:SupabaseService,
+              public router:Router) {
   }
 
-  logout(){
-    console.log("logging out")
-    this.authService.Logout()
+  async logout() {
+    await this.supabase.signOut()
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.supabase.authChanges((_, session) => (this.session = session))
   }
 
 }
