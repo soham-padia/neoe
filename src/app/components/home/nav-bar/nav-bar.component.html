@@ -7,7 +7,7 @@
         <span>{{session?.user?.email||'Unknown'}}</span>
     </button>
     <mat-menu #menu="matMenu" xPosition="before" yPosition="below">
-      <button mat-menu-item (click)="router.navigateByUrl('/updateProfile')">
+      <button mat-menu-item (click)="openProfile()">
         <mat-icon>register</mat-icon>
         <span>Update Profile</span>
       </button>

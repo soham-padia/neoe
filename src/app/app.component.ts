@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SupabaseService} from "./supabase.service";
+import {SupabaseProfilesService} from "./services/supabase.profiles.service";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ export class AppComponent implements OnInit{
 
   session = this.supabase.session
   title = 'neoe';
-  constructor(private readonly supabase:SupabaseService) {
+  constructor(private readonly supabase:SupabaseProfilesService) {
   }
 
   ngOnInit() {

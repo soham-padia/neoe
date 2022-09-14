@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AuthChangeEvent, createClient, Session, SupabaseClient} from "@supabase/supabase-js";
-import {environment} from "../environments/environment";
+import {environment} from "../../environments/environment";
 import {Router} from "@angular/router";
 
 export interface Profile{
@@ -19,7 +19,7 @@ export interface Profile{
 
 
 
-export class SupabaseService {
+export class SupabaseProfilesService {
 
   private supabase:SupabaseClient;
 
@@ -29,6 +29,14 @@ export class SupabaseService {
       environment.supabaseKey
     )
   }
+
+  async signInWithGoogle(): Promise<void> {
+    const { user, session, error } = await this.supabase.auth.signIn({
+      provider: 'google',
+    })
+  }
+
+
 
   get user(){
     return this.supabase.auth.user()

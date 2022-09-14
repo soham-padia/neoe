@@ -27,6 +27,7 @@ import {AngularFirestore, AngularFirestoreModule} from "@angular/fire/compat/fir
 import {AngularFireAuth, AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { PostFormComponent } from './components/post-form/post-form.component';
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {MatDialog, MatDialogModule} from "@angular/material/dialog";
     MateialModule,
     MatCommonModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule
 
   ],
   providers: [

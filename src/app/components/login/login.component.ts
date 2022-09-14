@@ -4,7 +4,7 @@ import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {RegisterComponent} from "../register/register.component";
-import {Profile, SupabaseService} from "../../supabase.service";
+import {Profile, SupabaseProfilesService} from "../../services/supabase.profiles.service";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   subs:Subscription[]=[];
   constructor(private router:Router,
               private matDialog:MatDialog,
-              private readonly supabase:SupabaseService) { }
+              private readonly supabase:SupabaseProfilesService) { }
 
   ngOnInit(): void {
     this.getProfile
@@ -45,6 +45,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
+  }
+
+  async signInUsingGoogle(){
+    return this.supabase.signInWithGoogle()
   }
 
   async login(email:string) {

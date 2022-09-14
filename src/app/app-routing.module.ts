@@ -22,10 +22,6 @@ const routes: Routes = [
     path:'create',
     component: PostFormComponent
   },
-  {
-    path:'updateProfile',
-    component: RegisterComponent
-  }
 ];
 
 @NgModule({

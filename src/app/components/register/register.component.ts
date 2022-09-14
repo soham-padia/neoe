@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
-import {Profile, SupabaseService} from "../../supabase.service";
+import {Profile, SupabaseProfilesService} from "../../services/supabase.profiles.service";
 import {Session} from "@supabase/supabase-js";
 
 @Component({
@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   session:Session | null=this.supabase.session
 
 
-  constructor(/*public dialogRef:MatDialogRef<RegisterComponent>*/ private readonly supabase:SupabaseService) {
+  constructor(public dialogRef:MatDialogRef<RegisterComponent>, private readonly supabase:SupabaseProfilesService) {
 
   }
 
@@ -62,6 +62,7 @@ export class RegisterComponent implements OnInit {
     try {
       this.loading = true
       await this.supabase.updateProfile({ fName,lName,isVerified,isAdmin,canPostHome,canPostDirector,canPostInvestor})
+
     } catch (error) {
       // @ts-ignore
       alert(error.message)

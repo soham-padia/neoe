@@ -19,7 +19,7 @@
               <input #email type="email" matInput name="email" ngModel placeholder="Email" required/>
             </mat-form-field>
             <button type="submit" mat-button color="primary" class="login-button" (click)="login(email.value)" [disabled]="form.invalid||form.pending">{{ loading ? 'Loading ...' : 'LOG IN' }}</button>
-
+            <button color="warn" (click)="signInUsingGoogle()" mat-button>Sign in using google</button>
           </form>
         </mat-card-content>
       </mat-card>
