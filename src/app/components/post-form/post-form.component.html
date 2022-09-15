@@ -33,10 +33,14 @@
           </div>
 
           <div class="pl-4">
+
             <label class="pr-4">Genre of your project :</label>
-            <mat-radio-group [ngModel]="gen" name="gen">
-                <mat-radio-button class="pr-4" *ngFor = "let genre of genres" value="genre">{{genre}}</mat-radio-button>
-            </mat-radio-group>
+            <div *ngFor="let genre of genres">
+              <input type="radio" name="gen" id="{{genre}}" value="{{genre}}" (change)="onItemChange($event)">
+              <label>{{genre}}</label>
+
+            </div>
+
           </div>
 
           <div>

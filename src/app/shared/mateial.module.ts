@@ -8,6 +8,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatCommonModule, MatNativeDateModule} from "@angular/material/core";
 import {MatMenuModule} from "@angular/material/menu";
+import {MatRadioModule} from "@angular/material/radio";
 
 const modules:any=[
   MatCardModule,
@@ -19,6 +20,7 @@ const modules:any=[
   MatNativeDateModule,
   MatCommonModule,
   MatMenuModule,
+  MatRadioModule
 ]
 
 @NgModule({

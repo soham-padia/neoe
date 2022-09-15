@@ -3,6 +3,8 @@ import {createClient, SupabaseClient} from "@supabase/supabase-js";
 import {Router} from "@angular/router";
 import {environment} from "../../environments/environment";
 
+/*import {toISOString} from "@segment/to-iso-string"*/
+
 export interface Post{
   onHome:boolean,
   onInvestor:boolean,
@@ -11,7 +13,8 @@ export interface Post{
   postDescription:string,
   postSummary:string,
   estimatedTimeToClose:string,
-  categories:string[]
+  categories:string[],
+  url:string
 }
 
 @Injectable({
@@ -46,8 +49,18 @@ export class SupabasePostsService {
   }
 
   get postsByTime(){
+    const date=new Date()
+    const nowUtc=Date.UTC(date.getUTCFullYear(), date.getUTCMonth(),
+      date.getUTCDate(), date.getUTCHours(),
+      date.getUTCMinutes(), date.getUTCSeconds())
+    const dt=Date.now()
+    console.log(new Date(nowUtc))
+    console.log(date.toUTCString())
+    console.log(this.supabase.from('posts').select('postTitle,postDescription,postSummary,estimatedTimeToClose,onHome,onInvestor,categories').lte("created_at",[date.toUTCString()])
+      .order('created_at',{ascending:false})
+      .limit(10))
     // @ts-ignore
-    return this.supabase.from('posts').select('postTitle,postDescription,postSummary,estimatedTimeToClose,onHome,onInvestor,categories').lte("created_at",[Date.now().toString()])
+    return this.supabase.from('posts').select('postTitle,postDescription,postSummary,estimatedTimeToClose,onHome,onInvestor,categories').lte("created_at",[date.toUTCString()])
       .order('created_at',{ascending:false})
       .limit(10)
   }
@@ -65,6 +78,7 @@ export class SupabasePostsService {
           postSummary:post.postSummary,
           estimatedTimeToClose:post.estimatedTimeToClose,
           categories:post.categories,
+          url:post.url
         }
       ])
   }
