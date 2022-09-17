@@ -12,16 +12,23 @@ export class SectionCardComponent implements OnInit {
 
   @Input()
   title: string | undefined;
-  cards: any |undefined;
+  cards: any[]=[
+    {
 
-  post: Post | undefined
+    }
+  ];
+  // @ts-ignore
+  postsId:number[]
+  mappedArray=[]
+
 
   constructor(private readonly supabasePost:SupabasePostsService,
-              private readonly supabaseProfiles:SupabaseProfilesService) {
+              private readonly supabaseProfiles:SupabaseProfilesService,
+              ) {
   }
 
   ngOnInit(): void {
-    this.cards= [
+    /*this.cards= [
       {
         "card_header":"Shib1",
         "card_title":"Shiba Inu1"
@@ -50,15 +57,22 @@ export class SectionCardComponent implements OnInit {
         "card_header":"Shib7",
         "card_title":"Shiba Inu7"
       },
-    ]
+    ]*/
     this.getPostsbyTime()
-    console.log(this.post)
+    // console.log(this.posts)
+    console.log(this.cards)
+
+
   }
 
   async getPostsbyTime(){
     try {
-      let {data: post,error,status}=await this.supabasePost.postsByTime
-      console.log(post)
+      let {data: postsId,error,status}=await this.supabasePost.postsIdByTime
+      // console.log(posts)
+      postsId?.map((value, index) => {
+        // @ts-ignore
+        this.cards[index]=value;
+      })
     }catch (error){
       // @ts-ignore
       alert(error.message)

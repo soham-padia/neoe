@@ -48,21 +48,24 @@ export class SupabasePostsService {
       .single()
   }
 
-  get postsByTime(){
+  get postsIdByTime(){
     const date=new Date()
     const nowUtc=Date.UTC(date.getUTCFullYear(), date.getUTCMonth(),
       date.getUTCDate(), date.getUTCHours(),
       date.getUTCMinutes(), date.getUTCSeconds())
     const dt=Date.now()
-    console.log(new Date(nowUtc))
-    console.log(date.toUTCString())
-    console.log(this.supabase.from('posts').select('postTitle,postDescription,postSummary,estimatedTimeToClose,onHome,onInvestor,categories').lte("created_at",[date.toUTCString()])
-      .order('created_at',{ascending:false})
-      .limit(10))
     // @ts-ignore
-    return this.supabase.from('posts').select('postTitle,postDescription,postSummary,estimatedTimeToClose,onHome,onInvestor,categories').lte("created_at",[date.toUTCString()])
+    return this.supabase.from('posts').select('id').lte("created_at",[date.toUTCString()])
       .order('created_at',{ascending:false})
       .limit(10)
+  }
+
+  postsById(id:number){
+    return this.supabase.from('posts').select().eq('id',id)
+  }
+
+  postsByUrl(url:string){
+    return this.supabase.from('posts').select().eq('url',url);
   }
 
   createPost(post:Post){
