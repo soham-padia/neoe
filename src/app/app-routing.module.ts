@@ -5,6 +5,8 @@ import {HomeComponent} from "./components/home/home.component";
 import {CommonModule} from "@angular/common";
 import {AgainstUnAuthedGuardGuard} from "./guards/against-un-authed-guard.guard";
 import {RegisterComponent} from "./components/register/register.component";
+import {PostFormComponent} from "./components/post-form/post-form.component";
+import {PostComponent} from "./components/post/post.component";
 
 const routes: Routes = [
   {
@@ -15,8 +17,16 @@ const routes: Routes = [
   },
   {
     path:'login',
-    component: RegisterComponent
-  }
+    component: LoginComponent
+  },
+  {
+    path:'create',
+    component: PostFormComponent
+  },
+  {
+    path:'p/:id',
+    component: PostComponent
+  },
 ];
 
 @NgModule({

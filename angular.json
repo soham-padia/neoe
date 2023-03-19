@@ -17,6 +17,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "cross-fetch",
+              "websocket"
+            ],
             "outputPath": "dist/neoe",
             "index": "src/index.html",
             "main": "src/main.ts",

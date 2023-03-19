@@ -4,16 +4,16 @@
 <div class="pt-5 w-full">
     <button mat-button [matMenuTriggerFor]="menu" class="w-full" aria-label="Example icon-button with a menu">
         <mat-icon>person</mat-icon>
-        <span>USERNAME</span>
+        <span>{{session?.user?.email||'Unknown'}}</span>
     </button>
     <mat-menu #menu="matMenu" xPosition="before" yPosition="below">
-        <button mat-menu-item>
-            <mat-icon>dialpad</mat-icon>
-            <span>Redial</span>
-        </button>
-        <button mat-menu-item disabled>
-            <mat-icon>voicemail</mat-icon>
-            <span>Check voice mail</span>
+      <button mat-menu-item (click)="openProfile()">
+        <mat-icon>register</mat-icon>
+        <span>Update Profile</span>
+      </button>
+        <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Log Out</span>
         </button>
         <button mat-menu-item>
             <mat-icon>notifications_off</mat-icon>
@@ -57,4 +57,13 @@
             Saved Posts
         </button>
     </a>
+</div>
+
+<div class="pt-5 w-full">
+  <a href="create" class="m-2 w-full">
+    <button mat-button class="w-full">
+      <mat-icon fontIcon="create"></mat-icon>
+      Create posts
+    </button>
+  </a>
 </div>

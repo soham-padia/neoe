@@ -1,0 +1,57 @@
+<div class="grid grid-cols-5 w-screen h-screen">
+  <div class=""></div>
+  <section class="col-span-3 grid grid-rows-4 gap-4 h-screen">
+    <div></div>
+    <div class="row-start-2 row-end-5 p-4 rounded-lg border-2">
+      <div class="header">
+        <h3>Create Post</h3>
+        <p>Its quick and easy</p>
+      </div>
+
+      <div>
+        <form #form="ngForm" class="flex flex-col">
+          <div>
+            <mat-form-field class="p-3 w-1/3">
+              <input #postTitle type="text" matInput name="posttitle" ngModel placeholder="Post Title" required/>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field class="p-3 w-11/12">
+              <input #postSummary type="text" matInput name="postsummary" ngModel placeholder="Summary of post" required/>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field class="p-3 w-11/12">
+              <mat-label>Details of post in full details</mat-label>
+              <textarea #postDescription matInput cdkTextareaAutosize="true"
+                        #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="5"
+                        cdkAutosizeMaxRows="10" name="postdetails" ngModel required></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="pl-4">
+
+            <label class="pr-4">Genre of your project :</label>
+            <div *ngFor="let genre of genres">
+              <input type="radio" name="gen" id="{{genre}}" value="{{genre}}" (change)="onItemChange($event)">
+              <label>{{genre}}</label>
+
+            </div>
+
+          </div>
+
+          <div>
+            <mat-form-field class="p-3 w-2/5">
+              <input #timeAmt type="text" matInput name="timeAmt" ngModel placeholder="Estimated amount of time required to finish this project" required/>
+            </mat-form-field>
+          </div>
+
+          <div><button type="submit" mat-button color="primary" class="login-button" [disabled]="form.invalid||form.pending" (click)="postData(postTitle.value,postSummary.value,postDescription.value,false,false,false,timeAmt.value)">{{loading?"Loading":"Create"}}</button></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
